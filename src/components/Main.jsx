@@ -48,9 +48,18 @@ const Main = () => {
   
 
   const handleDelete = (id, title) => {
-    setTodos(todos.filter((list) => list.id !== id));
-    toastSuccess(`${title} deleted`);
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then((response) => {
+        setTodos(todos.filter((list) => list.id !== id));
+        toastSuccess(`${title} deleted`);
+      })
+      .catch((error) => {
+        console.error(error);
+        toastError('Failed to delete post');
+      });
   };
+  
 
   const handleSelectChange = (e) => {
     setLimit(e.target.value);
