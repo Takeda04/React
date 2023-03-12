@@ -26,17 +26,26 @@ const Main = () => {
     if (title === '' || body === '') {
       return toastError('Fill the all fields');
     }
-
+  
     const newPost = {
-      id: Date.now(),
+        id: Date.now(),
       title,
       body,
     };
-    setTodos([...todos, newPost]);
-    setTitle('');
-    setBody('');
-    toastSuccess('Post added successfully');
+    axios
+      .post('https://jsonplaceholder.typicode.com/todos', newPost)
+      .then((response) => {
+        setTodos([...todos, response.data]);
+        setTitle('');
+        setBody('');
+        toastSuccess('Post added successfully');
+      })
+      .catch((error) => {
+        console.error(error);
+        toastError('Failed to add post');
+      });
   };
+  
 
   const handleDelete = (id, title) => {
     setTodos(todos.filter((list) => list.id !== id));
@@ -69,6 +78,7 @@ const Main = () => {
               setBody(e.target.value);
             }}
           />
+           <button className='btn btn-primary form-control'>Add</button>
           <select
             name='select'
             id='select'
@@ -83,7 +93,7 @@ const Main = () => {
             <option value='40'>40</option>
             <option value='50'>50</option>
           </select>
-          <button className='btn btn-primary form-control'>Add</button>
+         
         </form>
       </div>
       <div className='extra__box'>
