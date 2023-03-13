@@ -51,7 +51,7 @@ const Main = () => {
     axios
       .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .then((response) => {
-        setTodos(todos.filter((list) => list.id !== id));
+        setTodos(todos.filter((list) => list.title !== title));
         toastSuccess(`${title} deleted`);
       })
       .catch((error) => {
