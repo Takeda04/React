@@ -64,12 +64,17 @@ const Main = () => {
   const handleSelectChange = (e) => {
     const evt = e.target.value
     setLimit(evt);
-    // toastSuccess(`${evt} posts added successfully`)
-    if(evt > limit){
-     return toastSuccess(`Posts increased successfully to ${evt} posts` );
+    if(evt < 10 ){
+      return toastSuccess(`Posts decreased successfully to ${evt} post` );
     }else{
-     return toastSuccess(`Posts decreased successfully to ${evt} posts`);
+      if(evt > limit){
+        return toastSuccess(`Posts increased successfully to ${evt} posts` );
+       }else{
+        return toastSuccess(`Posts decreased successfully to ${evt} posts`);
+       }
     }
+    // toastSuccess(`${evt} posts added successfully`)
+    
   };
 
   return (
