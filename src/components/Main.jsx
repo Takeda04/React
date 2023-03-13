@@ -28,7 +28,7 @@ const Main = () => {
     }
   
     const newPost = {
-        id: Date.now(),
+      id: Date.now(),
       title,
       body,
     };
