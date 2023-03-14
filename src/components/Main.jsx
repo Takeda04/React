@@ -5,10 +5,14 @@ import './assets/style.css';
 import { toastError, toastSuccess } from './utils/index';
 
 const Main = () => {
+
+  
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [todos, setTodos] = useState([]);
   const [limit, setLimit] = useState(4);
+
+
 
   useEffect(() => {
     axios
@@ -21,17 +25,21 @@ const Main = () => {
       });
   }, [limit]);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title === '' || body === '') {
       return toastError('Fill the all fields');
     }
+
   
     const newPost = {
       id: Date.now(),
       title,
       body,
     };
+
+
     axios
       .post('https://jsonplaceholder.typicode.com/todos', newPost)
       .then((response) => {
@@ -72,9 +80,7 @@ const Main = () => {
        }else{
         return toastSuccess(`Posts decreased successfully to ${evt} posts`);
        }
-    }
-    // toastSuccess(`${evt} posts added successfully`)
-    
+    }    
   };
 
   return (
