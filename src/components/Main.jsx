@@ -111,7 +111,7 @@ const Main = () => {
             id='select'
             value={limit}
             onChange={handleSelectChange}
-            className="form-control text-center"
+            className="form-control text-center mt-1"
           >
             <option value='0'>0</option>
             <option value='10'>10</option>
