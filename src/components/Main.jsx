@@ -68,7 +68,9 @@ const Main = () => {
       });
   };
   
-
+  const handleEdit = () => {
+    
+  }
   const handleSelectChange = (e) => {
     const evt = e.target.value
     setLimit(evt);
@@ -85,7 +87,7 @@ const Main = () => {
 
   return (
     <>
-      <div className='worn'>
+      <div className='worn w-50 mx-auto mt-[100]'>
         <form onSubmit={handleSubmit}>
           <input
             className='input form-control text-center my-1'
@@ -123,9 +125,9 @@ const Main = () => {
          
         </form>
       </div>
-      <div className='extra__box'>
+      <div className='extra__box d-grid'>
         {todos.map((list, i) => (
-          <div className='worn__box py-1' key={i}>
+          <div className='worn__box py-1 my-2  border border-dark rounded-3 text-white' key={i}>
             <h3 className='worn__title'>{list.title}</h3>
             <p className='worn__text'>{list.body}</p>
             <button
@@ -133,6 +135,12 @@ const Main = () => {
               className='btn btn-danger'
             >
               Delete
+            </button>
+            <button
+              onClick={() => handleEdit(list.id, list.title)}
+              className='btn btn-info'
+            >
+              Edit
             </button>
           </div>
         ))}
