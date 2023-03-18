@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import './assets/style.css';
-import { toastError, toastSuccess } from './utils/index';
+import '../assets/style.css';
+import { toastError, toastSuccess } from '../utils/index';
+import Modal from './Modal';
 
 const Main = () => {
 
@@ -11,7 +12,6 @@ const Main = () => {
   const [body, setBody] = useState('');
   const [todos, setTodos] = useState([]);
   const [limit, setLimit] = useState(4);
-
 
 
   useEffect(() => {
@@ -34,7 +34,6 @@ const Main = () => {
 
   
     const newPost = {
-      id: Date.now(),
       title,
       body,
     };
@@ -68,8 +67,18 @@ const Main = () => {
       });
   };
   
-  const handleEdit = () => {
-    
+  const handleEdit = (id,) => {
+    console.log(
+      axios
+      .get(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then((response) => {
+        setTodos(todos.id);
+        toastSuccess(`${title} deleted`);
+      })
+      .catch((error) => {
+        console.error(error);
+        toastError('Failed to delete post');
+      }))
   }
   const handleSelectChange = (e) => {
     const evt = e.target.value
